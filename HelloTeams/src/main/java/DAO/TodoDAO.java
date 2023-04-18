@@ -12,7 +12,7 @@ public class TodoDAO {
 	}
 	public List<TodoDTO> viewTodo(Map<String, Object> map){
 		List<TodoDTO> li = new ArrayList();
-		String sql = "select"
+		String sql = "select "
 		return li;
 	}
 	

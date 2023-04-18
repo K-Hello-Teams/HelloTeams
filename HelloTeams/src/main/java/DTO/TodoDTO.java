@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class TodoDTO {
 	private String todoName;
-	private int session_Id;
-	private String host_Id;
-	private String todo_Id;
+	private int project_Id; // 프로젝트 고유 번호
+	private int section_Id; // 프로젝트 별 섹션 고유 번호
+	private int todo_num; // 섹션별 고유
+	private String todo_Id; // 작성자 ID
 	private Date todo_Start_Date;
 	private Date todo_End_Date;
-	private String todo_Status;
-	private String todo_Rank;
-	private boolean todo_checked;
+	private String todo_Status; //체크하면 상태가 완료됨
+	private int todo_Rank;
 	
 	public String getTodoName() {
 		return todoName;
@@ -19,17 +19,23 @@ public class TodoDTO {
 	public void setTodoName(String todoName) {
 		this.todoName = todoName;
 	}
-	public int getSession_Id() {
-		return session_Id;
+	public int getProject_Id() {
+		return project_Id;
 	}
-	public void setSession_Id(int session_Id) {
-		this.session_Id = session_Id;
+	public void setProject_Id(int project_Id) {
+		this.project_Id = project_Id;
 	}
-	public String getHost_Id() {
-		return host_Id;
+	public int getSection_Id() {
+		return section_Id;
 	}
-	public void setHost_Id(String host_Id) {
-		this.host_Id = host_Id;
+	public void setSection_Id(int section_Id) {
+		this.section_Id = section_Id;
+	}
+	public int getTodo_Num() {
+		return todo_num;
+	}
+	public void setTodo_Num(int todo_num) {
+		this.todo_num = todo_num;
 	}
 	public String getTodo_Id() {
 		return todo_Id;
@@ -55,18 +61,11 @@ public class TodoDTO {
 	public void setTodo_Status(String todo_Status) {
 		this.todo_Status = todo_Status;
 	}
-	public String getTodo_Rank() {
+	public int getTodo_Rank() {
 		return todo_Rank;
 	}
-	public void setTodo_Rank(String todo_Rank) {
+	public void setTodo_Rank(int todo_Rank) {
 		this.todo_Rank = todo_Rank;
 	}
-	public boolean isTodo_checked() {
-		return todo_checked;
-	}
-	public void setTodo_checked(boolean todo_checked) {
-		this.todo_checked = todo_checked;
-	}
-	
 	
 }

@@ -46,6 +46,29 @@ public class MemberDAO extends JDBConnPool {
 		
 		return result;
 	}
+	
+	public MemberDTO FindId(String name, String email) {
+		MemberDTO dto = new MemberDTO();
+		String sql = "SELECT mem_id FROM mem WHERE mem_name LIKE ? AND mem_email LIKE ?";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, name);
+			psmt.setString(2, email);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setId(rs.getString("MEM_ID"));
+				System.out.println(dto.getId());
+			}
+			
+		} catch(Exception e) {
+			System.out.println("찾기 오류");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 }
 
 

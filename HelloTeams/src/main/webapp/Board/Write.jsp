@@ -10,14 +10,14 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>게시판 글쓰기</title>
-<link href="css/styles.css" rel="stylesheet" />
+<link href="../css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">Hello Teams</a>
+		<a class="navbar-brand ps-3" href="../index.jsp">Hello Teams</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -27,7 +27,7 @@
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
+				<input class="form-control" type="text" placeholder="검색"
 					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
 				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
 					<i class="fas fa-search"></i>
@@ -55,19 +55,19 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">Core</div>
-						<a class="nav-link" href="index.html">
+						<div class="sb-sidenav-menu-heading">홈</div>
+						<a class="nav-link" href="index.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> Dashboard
+							</div>메인페이지
 						</a>
-						<div class="sb-sidenav-menu-heading">Interface</div>
+						<div class="sb-sidenav-menu-heading">업무</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
-							</div> Layouts
+							</div> 업무 관련
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -75,9 +75,8 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">Static
-									Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light
-									Sidenav</a>
+								<a class="nav-link" href="layout-static.jsp">프로젝트 섹션</a> <a
+									class="nav-link" href="layout-sidenav-light.jsp">내 작업</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -85,7 +84,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> Pages
+							</div> 커뮤니티
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -96,7 +95,7 @@
 								id="sidenavAccordionPages">
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 									data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-									aria-controls="pagesCollapseAuth"> Authentication
+									aria-controls="pagesCollapseAuth">게시판
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
@@ -105,14 +104,14 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="login.html">Login</a> <a
-											class="nav-link" href="register.html">Register</a> <a
-											class="nav-link" href="password.html">Forgot Password</a>
+										<a class="nav-link" href="Board/Notice.jsp">공지 게시판</a> <a
+											class="nav-link" href="Board/List.jsp">게시물 목록</a> <a
+											class="nav-link" href="Board/Write.jsp">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 									data-bs-target="#pagesCollapseError" aria-expanded="false"
-									aria-controls="pagesCollapseError"> Error
+									aria-controls="pagesCollapseError">쪽지
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
@@ -121,28 +120,28 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="401.html">401 Page</a> <a
-											class="nav-link" href="404.html">404 Page</a> <a
-											class="nav-link" href="500.html">500 Page</a>
+										<a class="nav-link" href="401.jsp">받은 쪽지함</a> <a
+											class="nav-link" href="404.jsp">보낸 쪽지함</a> <a
+											class="nav-link" href="500.jsp">쪽지 보관함</a>
 									</nav>
 								</div>
 							</nav>
 						</div>
-						<div class="sb-sidenav-menu-heading">Addons</div>
-						<a class="nav-link" href="charts.html">
+						<div class="sb-sidenav-menu-heading">미정메뉴</div>
+						<a class="nav-link" href="charts.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
-							</div> Charts
-						</a> <a class="nav-link" href="tables.html">
+							</div> 마이 페이지
+						</a> <a class="nav-link" href="tables.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> Tables
+							</div> 관리자 페이지
 						</a>
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Logged in as:</div>
-					Start Bootstrap
+					Hello Teams
 				</div>
 			</nav>
 		</div>
@@ -152,7 +151,7 @@
 					<h1 class="mt-4">게시판 글 작성하기</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">게시판 글 작성</li>
-						<li class="breadcrumb-item"><a href="index.html">메인페이지로
+						<li class="breadcrumb-item"><a href="../index.jsp">메인페이지로
 								돌아가기</a></li>
 					</ol>
 					<!-- 					<div class="card mb-4">
@@ -169,38 +168,28 @@
 					</div> -->
 				</div>
 			</main>
-			<form action="../m2board/write.do" method="post" name="writeForm"
+			<form action="../board/write.do" method="post" name="writeForm"
 				enctype="multipart/form-data">
 				<table border="1" width="90%">
 					<tr>
-						<td>작성자</td>
-						<td><input type="text" name="name" style="width: 150px;" />
-						</td>
-					</tr>
-					<tr>
-						<td>제목</td>
+						<td align="center">제목</td>
 						<td><input type="text" name="title" style="width: 90%;" /></td>
 					</tr>
 					<tr>
-						<td>내용</td>
+						<td align="center">내용</td>
 						<td><textarea name="content"
-								style="width: 90%; height: 100px;"></textarea></td>
+								style="width: 90%; height: 300px;" placeholder="2000자 내외로 입력해주세요."></textarea></td>
 					</tr>
 					<tr>
-						<td>첨부 파일</td>
+						<td align="center">첨부 파일</td>
 						<td><input type="file" name="ofile" /></td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" name="pass" style="width: 100px;" />
-						</td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
 							<button type="submit">작성완료</button>
 							<button type="reset">초기화</button>
 							<button type="button"
-								onclick="location.href='../m2board/list.do';">목록 바로가기</button>
+								onclick="location.href='../board/list.do';">목록 바로가기</button>
 						</td>
 					</tr>
 				</table>
@@ -210,10 +199,10 @@
 					<div
 						class="d-flex align-items-center justify-content-between small">
 						<div class="text-muted">Copyright &copy; Your Website 2023</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
+<!-- 						<div> -->
+<!-- 							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms -->
+<!-- 								&amp; Conditions</a> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</footer>

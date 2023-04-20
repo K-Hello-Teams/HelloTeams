@@ -50,6 +50,7 @@ public class WriteController extends HttpServlet {
 		dto.setWriter_id(mr.getParameter("writer_id"));
 		dto.setTitle(mr.getParameter("title"));
 		dto.setContent(mr.getParameter("content"));
+		dto.setNoticeFlag(mr.getParameter("noticeFlag"));
 
 		// 원본 파일명과 수정된 파일명
 		String filename = mr.getFilesystemName("ofile");

@@ -104,9 +104,9 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="Board/Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="Board/List.jsp">게시물 목록</a> <a
-											class="nav-link" href="Board/Write.jsp">게시물 작성</a>
+										<a class="nav-link" href="Notice.jsp">공지 게시판</a> <a
+											class="nav-link" href="List.jsp">게시물 목록</a> <a
+											class="nav-link" href="Write.jsp">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -176,6 +176,13 @@
 						<td><input type="text" name="title" style="width: 90%;" /></td>
 					</tr>
 					<tr>
+						<td align="center">유형</td>
+						<td>
+							<input type="checkbox" id="noticeFlag" name="noticeFlag" style="width: 30;"/>
+							<label for="noticeFlag">공지</label>
+						</td>
+					</tr>
+					<tr>
 						<td align="center">내용</td>
 						<td><textarea name="content"
 								style="width: 90%; height: 300px;" placeholder="2000자 내외로 입력해주세요."></textarea></td>
@@ -212,5 +219,10 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
+	<script type="text/javascript">
+		
+	
+	
+	</script>
 </body>
 </html>

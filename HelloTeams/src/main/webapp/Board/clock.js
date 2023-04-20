@@ -2,7 +2,7 @@ const clock = document.querySelector('#clock');
 function getClock() {
     const date = new Date();
 //    const hh = String(date.getHours()).padStart(2,"0");
-    const hh2 = String(date.getHours()).padStart(2,"0");
+    let hh2 = String(date.getHours()).padStart(2,"0");
     const mm = String(date.getMinutes()).padStart(2,"0");
     const ss = String(date.getSeconds()).padStart(2,"0");
     // console.log(hh,mm,ss);

@@ -28,13 +28,50 @@ public class BoardDAO extends JDBConnPool {
 		}
 		return totalcount;
 	}
+	// 페이지별 게시물 읽어오기
+	public List<MBoardDTO> getListPage(Map<String, Object> map) {
+		List<MBoardDTO> bl = new Vector<>();
+		String sql = "select * from (" + "select rownum pnum, s.* from(" + "select b.* from fileboard b";
+		if (map.get("searchStr") != null) {
+			sql += " where " + map.get("searchType") + " like '%" + map.get("searchStr") + "%'";
+		}
+		if (map.get("noticeFlag") != null) {
+			sql += " noticeFlag = " + map.get("noticeFlag") ;
+		}
+		sql += " order by idx desc" + ") s" + ")" + " where pnum between ? and ?";
 
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, map.get("start").toString());
+			psmt.setString(2, map.get("end").toString());
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				MBoardDTO dto = new MBoardDTO();
+				dto.setIdx(rs.getString("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("Content"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setNfile(rs.getString("nfile"));
+				dto.setDowncount(rs.getInt("downcount"));
+				dto.setVisitcount(rs.getInt("visitcount"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setPass(rs.getString("pass"));
+				bl.add(dto);
+			}
+
+		} catch (Exception e) {
+			System.out.println("게시물을 읽는 중 에러");
+		}
+		return bl;
+	}
+	
 	public List<BoardDTO> selectListPage(Map<String, Object> map) {
 		List<BoardDTO> b = new Vector<BoardDTO>();
 		String query = " " + "SELECT * FROM ( " + "   SELECT Tb.*, ROWNUM rNum FROM( " + " SELECT * FROM Board ";
 		if (map.get("searchWord") != null) {
 			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
-			query += "  ORDER BY id DESC " + "      )Tb " + " ) " + " WHERE rNum BETWEEN ? AND ? ";
+			query += "  ORDER BY id DESC " + "      )Tb " + " ) " + " WHERE rNum BETWEEN ? AND ? AND  noticeFlag = " + map.get("noticeFlag");
 		}
 		try {
 			psmt = con.prepareStatement(query);
@@ -63,10 +100,11 @@ public class BoardDAO extends JDBConnPool {
 		return b;
 	}
 
+
 	// 글 추가
 	public int insertWrite(BoardDTO dto) {
 		int result = 0;
-		String sql = "INSERT INTO FILEBOARD(no_Num, NAME, TITLE, CONTENT, OFILE, NFILE, PASS)"
+		String sql = "INSERT INTO FILEBOARD(no_Num, NAME, TITLE, CONTENT, OFILE, NFILE, NOTICEFLAG)"
 				+ "VALUES(SEQ_BOARD_NUM.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = con.prepareStatement(sql);
@@ -76,6 +114,7 @@ public class BoardDAO extends JDBConnPool {
 			psmt.setString(4, dto.getOfile());
 			psmt.setString(5, dto.getNfile());
 			psmt.setInt(6, dto.getNo_Num());
+			psmt.setString(7, dto.getNoticeFlag());
 			result = psmt.executeUpdate();
 
 		} catch (Exception e) {

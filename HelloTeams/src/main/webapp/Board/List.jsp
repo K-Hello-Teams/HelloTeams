@@ -111,9 +111,9 @@ a {
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="Board/Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="Board/List.jsp">게시물 목록</a> <a
-											class="nav-link" href="Board/Write.jsp">게시물 작성</a>
+										<a class="nav-link" href="Notice.jsp">공지 게시판</a> <a
+											class="nav-link" href="List.jsp">게시물 목록</a> <a
+											class="nav-link" href="Write.jsp">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"

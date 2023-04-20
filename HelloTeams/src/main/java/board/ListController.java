@@ -24,6 +24,9 @@ public class ListController extends HttpServlet{
 		// 변수 저장
 		Map<String, Object> map = new HashMap<>();
 		
+		// 게시판 유형 선택
+		map.put("noticeFlag",req.getParameter("noticeFlag"));
+		
 		// 검색
 		String searchType = req.getParameter("searchType");
 		String searchStr = req.getParameter("searchStr");

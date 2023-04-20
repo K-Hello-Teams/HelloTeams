@@ -24,11 +24,11 @@
                                     <div class="card-body">
                                         <form action="../Login/findId.do" method="get">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" name="search_name" type="text" placeholder="Input ID" />
+                                                <input class="form-control" name="search_name" type="text" placeholder="Input ID" required="required"/>
                                                 <label for="inputID">Name</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" name="search_email" type="email" placeholder="Input Email" />
+                                                <input class="form-control" name="search_email" type="email" placeholder="Input Email" required="required"/>
                                                 <label for="inputEmail">Email</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">

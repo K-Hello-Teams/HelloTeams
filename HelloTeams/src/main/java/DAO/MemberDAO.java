@@ -63,7 +63,30 @@ public class MemberDAO extends JDBConnPool {
 			}
 			
 		} catch(Exception e) {
-			System.out.println("찾기 오류");
+			System.out.println("아이디 찾기 오류");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
+	public MemberDTO FindPass(String name, String id, String email) {
+		MemberDTO dto = new MemberDTO();
+		String sql = "select mem_pw from mem where mem_id like ? and mem_name like ? and mem_email like ?";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, name);
+			psmt.setString(2, id);
+			psmt.setString(3, email);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setPw(rs.getString("MEM_PW"));
+			}
+			
+		} catch(Exception e) {
+			System.out.println("비번 찾기 오류");
 			e.printStackTrace();
 		}
 		

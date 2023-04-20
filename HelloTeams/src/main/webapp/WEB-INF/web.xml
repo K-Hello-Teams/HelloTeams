@@ -20,11 +20,11 @@
   </context-param>
   <context-param>
   	<param-name>OracleId</param-name>
-  	<param-value>jmlee</param-value>
+  	<param-value>min</param-value>
   </context-param>
   <context-param>
   	<param-name>OraclePw</param-name>
-  	<param-value>1234</param-value>
+  	<param-value>0713</param-value>
   </context-param>
   
   <context-param>
@@ -40,4 +40,34 @@
   	<param-name>maxPostSize</param-name>
   	<param-value>1024000</param-value>
   </context-param>
+  
+  
+  	<servlet>
+		<servlet-name>BoardList</servlet-name>
+		<servlet-class>board.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardList</servlet-name>
+		<url-pattern>/board/list.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>BoardWrite</servlet-name>
+		<servlet-class>board.WriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardWrite</servlet-name>
+		<url-pattern>/board/write.do</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+		<param-name>maxPostSize</param-name>
+		<param-value>1024000</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>CHAT_ADDR</param-name>
+		<param-value>ws://localhost:8082/HelloTeams</param-value>
+	</context-param>
+  
 </web-app>

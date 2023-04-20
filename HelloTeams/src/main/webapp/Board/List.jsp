@@ -5,12 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
 <title>자료 게시판</title>
 <link href="../css/styles.css" rel="stylesheet" />
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"	crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+<style>
+a {
+	text-decoration: none;
+}
+</style>
 </head>
 <body class="sb-nav-fixed">
-	<h2>게시물 수정하기</h2>
+	<h2>자유 게시판</h2>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3" href="../index.jsp">Hello Teams</a>
@@ -146,46 +157,98 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">자유게시판</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">게시물 수정하기</li>
+						<li class="breadcrumb-item active">자유게시판 글 목록</li>
 						<li class="breadcrumb-item"><a href="../index.jsp">메인페이지로
 								돌아가기</a></li>
 					</ol>
 				</div>
 			</main>
-			<form action="../board/edit.do" method="post" name="writeForm"
-				enctype="multipart/form-data">
-				<input type="hidden" name="idx" value="${dto.no_Num}" /> <input
-					type="hidden" name="preOfile" value="${dto.ofile}" /> <input
-					type="hidden" name="preNfile" value="${dto.nfile}" />
+			<!-- 검색 -->
+			<form method="get">
 				<table border="1" width="90%">
 					<tr>
-						<td>작성자</td>
-						<td><input type="text" name="name" style="width: 150px;"
-							value="${dto.write_id}" /></td>
-					</tr>
-					<tr>
-						<td>제목</td>
-						<td><input type="text" name="title" style="width: 90%;"
-							value="${dto.title}" /></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td><textarea name="content"
-								style="width: 90%; height: 100px;">${dto.content}</textarea></td>
-					</tr>
-					<tr>
-						<td>첨부파일</td>
-						<td><input type="file" name="ofile" /></td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<button type="submit">작성완료</button>
-							<button type="reset">초기화</button>
-							<button type="button" onclick="location.href='../board/list.do';">목록
-								바로가기</button>
-						</td>
+						<td align="center"><select name="searchType">
+								<option value="title"
+									<c:if test="${map.searchType=='title'}">selected</c:if>>제목
+								</option>
+								<option value="content"
+									<c:if test="${map.searchType=='content'}">selected</c:if>>내용
+								</option>
+								<option value="writer_id"
+									<c:if test="${map.searchType=='writer_id'}">selected</c:if>>작성자
+								</option>
+						</select> <input type="search" name="searchStr" value="${map.searchStr}" />
+							<input type="submit" value="검색" /></td>
 					</tr>
 				</table>
+				<!-- 목록 -->
+				<table border="1" width="90%">
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>조회수</th>
+						<th>작성일</th>
+						<th>첨부파일</th>
+					</tr>
+					<c:choose>
+						<c:when test="${empty boardList}">
+							<tr>
+								<td colspan="6" align="center">등록된 게시물이 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${boardList}" var="list" varStatus="stat">
+								<tr align="center">
+									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.no_Num}</td>
+									<td align="center"><a
+										href="../board/view.do?idx=${list.no_Num}">${list.title}</a></td>
+									<td>${list.writer_id}</td>
+									<td>${list.visit_count}</td>
+									<td>${list.BoardDate}</td>
+									<td><c:if test="${not empty list.ofile}">
+											<a href="../board/download.do?ofile=${list.ofile}
+					&nfile=${list.nfile}&idx=${list.no_Num}">[${list.ofile}]</a>
+										</c:if></td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</table>
 			</form>
+			<!-- 하단 메뉴(페이징 글쓰기) -->
+			<table border="1" width="90%">
+				<tr align="center">
+					<td>${map.pagingStr}</td>
+					<td width="100">
+						<button type="button" onclick="location.href='../board/write.do';">
+							글쓰기</button>
+					</td>
+				</tr>
+			</table>
+			</form>
+			<footer class="py-4 bg-light mt-auto">
+				<div class="container-fluid px-4">
+					<div
+						class="d-flex align-items-center justify-content-between small">
+						<div class="text-muted">Copyright &copy; Your Website 2023</div>
+						<!-- 						<div> -->
+						<!-- 							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms -->
+						<!-- 								&amp; Conditions</a> -->
+						<!-- 						</div> -->
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js"></script>
 </body>
 </html>
+
+
+
+
+

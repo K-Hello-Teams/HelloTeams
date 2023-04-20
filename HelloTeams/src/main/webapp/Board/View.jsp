@@ -11,18 +11,18 @@
 </head>
 <body>
 	<h2>게시판 상세보기</h2>
-	<table border="1" width="90%">
+	<table border="2" width="90%">
 		<colgroup>
-			<col width="30%"/><col width="35%"/><col width=15%/>
+			<col width="15%"/><col width="15%"/><col width=15%/>
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<td>글번호</td><td>${dto.nonum}</td>
-			<td>작성자</td><td>${dto.name}</td>
+			<td>글번호</td><td>${dto.no_Num}</td>
+			<td>작성자</td><td>${dto.write_id}</td>
 		</tr>
 		<tr>
 			<td>작성일</td><td>${dto.BoardDate}</td>
-			<td>조회수</td><td>${dto.visitcount}</td>
+			<td>조회수</td><td>${dto.visit_count}</td>
 		</tr>
 		<tr>
 			<td>제목</td>
@@ -37,7 +37,7 @@
 			<td>
 				<c:if test="${not empty dto.ofile}">
 				${dto.ofile}
-				<a href="../board/download.do?ofile=${dto.ofile}&nfile=${dto.nfile}&nonum=${dto.nonum}">[다운로드]</a>
+				<a href="../board/download.do?ofile=${dto.ofile}&nfile=${dto.nfile}&no_Num=${dto.no_Num}">[다운로드]</a>
 				<button type="button" id="downbtn">다운로드</button>
 				</c:if>
 			</td>
@@ -50,10 +50,10 @@
 <%-- 				onclick="location.href='../board/pass.do?mode=edit&nonum=${param.nonum }';"> --%>
 <!-- 				수정하기</button> -->
 				<button type="button"
-				onclick="location.href='../board/edit.do?mode=edit&nonum=${param.nonum }';">
+				onclick="location.href='../board/edit.do?mode=edit&nonum=${param.no_Num }';">
 				수정하기</button>
 				<button type="button"
-				onclick="location.href='../board/edit.do?mode=delete&nonum=${param.nonum }';">
+				onclick="location.href='../board/edit.do?mode=delete&nonum=${param.no_Num }';">
 				삭제하기</button>
 				<button type="button"
 				onclick="location.href='../board/list.do';">
@@ -68,9 +68,9 @@
 		$.ajax({
 			type:'post',
 			async:false,
-			url:'/jspstudy/board/download.do',
+			url:'/HelloTeams/board/download.do',
 			dataType:'text',
-			data:{nonum:'${dto.nonum}'},
+			data:{nonum:'${dto.no_Num}'},
 			succes: function(data,textStatus){
 				console.log(data);
 				$('#dcount').text(data);

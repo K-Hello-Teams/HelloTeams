@@ -66,7 +66,7 @@ public class BoardDAO extends JDBConnPool {
 	// 글 추가
 	public int insertWrite(BoardDTO dto) {
 		int result = 0;
-		String sql = "INSERT INTO FILEBOARD(IDX, NAME, TITLE, CONTENT, OFILE, NFILE, PASS)"
+		String sql = "INSERT INTO FILEBOARD(no_Num, NAME, TITLE, CONTENT, OFILE, NFILE, PASS)"
 				+ "VALUES(SEQ_BOARD_NUM.NEXTVAL, ?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = con.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class BoardDAO extends JDBConnPool {
 	}
 
 	public void updateVisitCount(String no_Num) {
-		String sql = "update fileboard set visitcount=visitcount+1" + "where idx=?";
+		String sql = "update fileboard set visitcount=visitcount+1" + "where no_Num=?";
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, no_Num);
@@ -99,7 +99,7 @@ public class BoardDAO extends JDBConnPool {
 
 	public BoardDTO getView(String no_Num) {
 		BoardDTO dto = new BoardDTO();
-		String query = "select * from fileboard where idx=?";
+		String query = "select * from fileboard where no_Num=?";
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, no_Num);
@@ -108,7 +108,7 @@ public class BoardDAO extends JDBConnPool {
 				dto.setNo_Num(rs.getInt("no_Num"));
 				dto.setWriter_id(rs.getString("writer_id"));
 				dto.setTitle(rs.getString("title"));
-				dto.setContent(rs.getString("Content"));
+				dto.setContent(rs.getString("content"));
 				dto.setOfile(rs.getString("ofile"));
 				dto.setNfile(rs.getString("nfile"));
 //				dto.setDowncount(rs.getInt("downcount"));
@@ -139,5 +139,55 @@ public class BoardDAO extends JDBConnPool {
 				e.printStackTrace();
 			}
 			return totalCount;
+		}
+		
+		public int updatePost(BoardDTO dto) {
+			int result = 0;
+			try {
+				String sql = "update fileboard set title=?, name=?, content=?, ofile=?, nfile=? where idx=? and pass=?";
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getWriter_id());
+				psmt.setString(3, dto.getContent());
+				psmt.setString(4, dto.getOfile());			
+				psmt.setString(5, dto.getNfile());			
+				psmt.setInt(6, dto.getNo_Num());					
+				result = psmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.println("게시물 수정 중 에러");
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+
+		public void updateDowncount(String idx) {
+			String sql = "update fileboard set downcount=downcount+1 where idx=?";
+			try {
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1, idx);
+				psmt.executeQuery();
+			} catch (Exception e) {
+				System.out.println("다운로드수 증가 에러");
+				e.printStackTrace();
+			}
+		}
+		
+
+		public int getDowncount(String idx) {
+			int dcount = 0;
+			String sql = "select downcount from fileboard where idx=?";
+			try {
+				psmt = con.prepareStatement(sql);
+				psmt.setString(1, idx);
+				rs = psmt.executeQuery();
+				rs.next();
+				dcount = rs.getInt(1);
+
+			} catch (Exception e) {
+				System.out.println("다운로드 수 읽기 중 에러");
+				e.printStackTrace();
+			}
+			return dcount;
 		}
 }

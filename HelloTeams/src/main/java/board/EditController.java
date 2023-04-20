@@ -1,5 +1,6 @@
 package board;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -18,7 +19,6 @@ import com.oreilly.servlet.MultipartRequest;
 import DAO.BoardDAO;
 import DTO.BoardDTO;
 import utils.AlertFunc;
-import utils.AlertFunction;
 import utils.FileUtil;
 
 @WebServlet("/board/edit.do")
@@ -47,12 +47,12 @@ public class EditController extends HttpServlet {
 		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
 		if (mr == null) {
 			// 파일 업로드 실패하면
-			AlertFunction.alertBack(resp, "첨부파일 업로드 실패");
+			AlertFunc.alertBack(resp, "첨부파일 업로드 실패");
 			return;
 		}
 
 		// DB 정보 저장
-		String idx = mr.getParameter("idx");
+		Integer no_Num = Integer.parseInt(mr.getParameter("no_Num"));
 		String preOfile = mr.getParameter("preOfile");
 		String preNfile = mr.getParameter("preNfile");
 
@@ -61,11 +61,10 @@ public class EditController extends HttpServlet {
 
 		// 폼값을 DTO에 저장
 		BoardDTO dto = new BoardDTO();
-		dto.setIdx(idx);
-		dto.setName(mr.getParameter("name"));
+		dto.setNo_Num(no_Num);
+		dto.setWriter_id(mr.getParameter("write_id"));
 		dto.setTitle(mr.getParameter("title"));
 		dto.setContent(mr.getParameter("content"));
-		dto.setPass(pass);
 
 		// 원본 파일명과 수정된 파일명
 		String filename = mr.getFilesystemName("ofile");
@@ -97,9 +96,9 @@ public class EditController extends HttpServlet {
 		// 성공 여부
 		if (result == 1) { // 성공
 			session.removeAttribute("pass");
-			resp.sendRedirect("../m2board/view.do?idx=" + idx);
+			resp.sendRedirect("../board/view.do?idx=" + no_Num);
 		} else {
-			AlertFunction.alertLocation(resp, "수정되지 않았습니다", "../board/view.do?idx=" + idx);
+			AlertFunc.alertLocation(resp, "수정되지 않았습니다", "../board/view.do?no_Num=" + no_Num);
 		}
 	}
 }

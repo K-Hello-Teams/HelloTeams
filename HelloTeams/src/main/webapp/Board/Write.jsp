@@ -105,8 +105,8 @@
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="List.jsp">게시물 목록</a> <a
-											class="nav-link" href="Write.jsp">게시물 작성</a>
+											class="nav-link" href="list.do">게시물 목록</a> <a
+											class="nav-link" href="write.do">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -151,7 +151,7 @@
 					<h1 class="mt-4">게시판 글 작성하기</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">게시판 글 작성</li>
-						<li class="breadcrumb-item"><a href="../index.jsp">메인페이지로
+						<li class="breadcrumb-item"><a href="List.jsp">게시물 목록으로
 								돌아가기</a></li>
 					</ol>
 					<!-- 					<div class="card mb-4">

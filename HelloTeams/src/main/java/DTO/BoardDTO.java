@@ -4,16 +4,15 @@ import java.sql.Date;
 
 public class BoardDTO {
 
-	int no_Num;
+	int b_id;
 	int visit_count;
 	String writer_id;
 	String title;
 	String content;
-	String sendId;
 	String Ofile;
 	String Nfile;
 	String noticeFlag;
-	
+	Date BoardDate;
 
 	public String getNoticeFlag() {
 		return noticeFlag;
@@ -23,14 +22,12 @@ public class BoardDTO {
 		this.noticeFlag = noticeFlag;
 	}
 
-	Date BoardDate;
-
-	public int getNo_Num() {
-		return no_Num;
+	public int getB_id() {
+		return b_id;
 	}
 
-	public void setNo_Num(int no_Num) {
-		this.no_Num = no_Num;
+	public void setB_id(int b_id) {
+		this.b_id = b_id;
 	}
 
 	public int getVisit_count() {
@@ -65,13 +62,6 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public String getSendId() {
-		return sendId;
-	}
-
-	public void setSendId(String sendId) {
-		this.sendId = sendId;
-	}
 
 	public String getOfile() {
 		return Ofile;
@@ -96,4 +86,5 @@ public class BoardDTO {
 	public void setBoardDate(Date BoardDate) {
 		this.BoardDate = BoardDate;
 	}
+
 }

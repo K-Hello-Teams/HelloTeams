@@ -24,8 +24,8 @@ public class JDBConnect {
 			//DB connect!
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			//jdbc:oracle:thin:@DB IP:port Num:Serial Num
-			String id = "jmlee";
-			String pw = "1234";
+			String id = "min";
+			String pw = "0713";
 			con=DriverManager.getConnection(url,id,pw);
 			System.out.println("DB 연결(기본)");
 		} catch (Exception e) {

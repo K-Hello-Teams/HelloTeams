@@ -52,7 +52,7 @@ public class EditController extends HttpServlet {
 		}
 
 		// DB 정보 저장
-		Integer no_Num = Integer.parseInt(mr.getParameter("no_Num"));
+		Integer b_id = Integer.parseInt(mr.getParameter("b_id"));
 		String preOfile = mr.getParameter("preOfile");
 		String preNfile = mr.getParameter("preNfile");
 
@@ -61,7 +61,7 @@ public class EditController extends HttpServlet {
 
 		// 폼값을 DTO에 저장
 		BoardDTO dto = new BoardDTO();
-		dto.setNo_Num(no_Num);
+		dto.setB_id(b_id);
 		dto.setWriter_id(mr.getParameter("write_id"));
 		dto.setTitle(mr.getParameter("title"));
 		dto.setContent(mr.getParameter("content"));
@@ -96,9 +96,9 @@ public class EditController extends HttpServlet {
 		// 성공 여부
 		if (result == 1) { // 성공
 			session.removeAttribute("pass");
-			resp.sendRedirect("../board/view.do?idx=" + no_Num);
+			resp.sendRedirect("../board/view.do?idx=" + b_id);
 		} else {
-			AlertFunc.alertLocation(resp, "수정되지 않았습니다", "../board/view.do?no_Num=" + no_Num);
+			AlertFunc.alertLocation(resp, "수정되지 않았습니다", "../board/view.do?b_id=" + b_id);
 		}
 	}
 }

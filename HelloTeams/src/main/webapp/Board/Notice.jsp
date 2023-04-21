@@ -200,15 +200,15 @@ a {
 						<c:otherwise>
 							<c:forEach items="${boardList}" var="list" varStatus="stat">
 								<tr align="center">
-									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.no_Num}</td>
+									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.num}</td>
 									<td align="center"><a
-										href="../board/view.do?idx=${list.no_Num}">${list.title}</a></td>
+										href="../board/view.do?idx=${list.num}">${list.title}</a></td>
 									<td>${list.writer_id}</td>
 									<td>${list.visit_count}</td>
 									<td>${list.BoardDate}</td>
 									<td><c:if test="${not empty list.ofile}">
 											<a href="../board/download.do?ofile=${list.ofile}
-					&nfile=${list.nfile}&idx=${list.no_Num}">[${list.ofile}]</a>
+					&nfile=${list.nfile}&idx=${list.num}">[${list.ofile}]</a>
 										</c:if></td>
 								</tr>
 							</c:forEach>

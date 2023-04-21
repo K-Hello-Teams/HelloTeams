@@ -154,7 +154,7 @@
 			</main>
 			<form action="../board/edit.do" method="post" name="writeForm"
 				enctype="multipart/form-data">
-				<input type="hidden" name="idx" value="${dto.no_Num}" /> <input
+				<input type="hidden" name="idx" value="${dto.num}" /> <input
 					type="hidden" name="preOfile" value="${dto.ofile}" /> <input
 					type="hidden" name="preNfile" value="${dto.nfile}" />
 				<table border="1" width="90%">

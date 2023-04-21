@@ -17,7 +17,7 @@
 			<col width="*"/>
 		</colgroup>
 		<tr>
-			<td>글번호</td><td>${dto.no_Num}</td>
+			<td>글번호</td><td>${dto.b_id}</td>
 			<td>작성자</td><td>${dto.write_id}</td>
 		</tr>
 		<tr>
@@ -37,7 +37,7 @@
 			<td>
 				<c:if test="${not empty dto.ofile}">
 				${dto.ofile}
-				<a href="../board/download.do?ofile=${dto.ofile}&nfile=${dto.nfile}&no_Num=${dto.no_Num}">[다운로드]</a>
+				<a href="../board/download.do?ofile=${dto.ofile}&nfile=${dto.nfile}&b_id=${dto.b_id}">[다운로드]</a>
 				<button type="button" id="downbtn">다운로드</button>
 				</c:if>
 			</td>
@@ -47,13 +47,13 @@
 		<tr>
 			<td colspan="4" align="center">
 <!-- 				<button type="button" -->
-<%-- 				onclick="location.href='../board/pass.do?mode=edit&nonum=${param.nonum }';"> --%>
+<%-- 				onclick="location.href='../board/pass.do?mode=edit&b_id=${param.b_id }';"> --%>
 <!-- 				수정하기</button> -->
 				<button type="button"
-				onclick="location.href='../board/edit.do?mode=edit&nonum=${param.no_Num }';">
+				onclick="location.href='../board/edit.do?mode=edit&b_id=${param.b_id }';">
 				수정하기</button>
 				<button type="button"
-				onclick="location.href='../board/edit.do?mode=delete&nonum=${param.no_Num }';">
+				onclick="location.href='../board/edit.do?mode=delete&b_id=${param.b_id }';">
 				삭제하기</button>
 				<button type="button"
 				onclick="location.href='../board/list.do';">
@@ -70,7 +70,7 @@
 			async:false,
 			url:'/HelloTeams/board/download.do',
 			dataType:'text',
-			data:{nonum:'${dto.no_Num}'},
+			data:{b_id:'${dto.b_id}'},
 			succes: function(data,textStatus){
 				console.log(data);
 				$('#dcount').text(data);

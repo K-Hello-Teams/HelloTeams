@@ -6,7 +6,6 @@ import java.util.Vector;
 
 import DTO.BoardDTO;
 import common.JDBConnPool;
-import m2board.MBoardDTO;
 
 public class BoardDAO extends JDBConnPool {
 
@@ -28,15 +27,16 @@ public class BoardDAO extends JDBConnPool {
 		}
 		return totalcount;
 	}
+
 	// 페이지별 게시물 읽어오기
-	public List<MBoardDTO> getListPage(Map<String, Object> map) {
-		List<MBoardDTO> bl = new Vector<>();
+	public List<BoardDTO> getListPage(Map<String, Object> map) {
+		List<BoardDTO> bl = new Vector<>();
 		String sql = "select * from (" + "select rownum pnum, s.* from(" + "select b.* from fileboard b";
 		if (map.get("searchStr") != null) {
 			sql += " where " + map.get("searchType") + " like '%" + map.get("searchStr") + "%'";
 		}
 		if (map.get("noticeFlag") != null) {
-			sql += " noticeFlag = " + map.get("noticeFlag") ;
+			sql += " noticeFlag = " + map.get("noticeFlag");
 		}
 		sql += " order by idx desc" + ") s" + ")" + " where pnum between ? and ?";
 
@@ -46,17 +46,17 @@ public class BoardDAO extends JDBConnPool {
 			psmt.setString(2, map.get("end").toString());
 			rs = psmt.executeQuery();
 			while (rs.next()) {
-				MBoardDTO dto = new MBoardDTO();
-				dto.setIdx(rs.getString("idx"));
-				dto.setName(rs.getString("name"));
+				BoardDTO dto = new BoardDTO();
+				dto.setNo_Num(rs.getInt("no_Num"));
+				dto.setWriter_id(rs.getString("write_id"));
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("Content"));
 				dto.setOfile(rs.getString("ofile"));
 				dto.setNfile(rs.getString("nfile"));
-				dto.setDowncount(rs.getInt("downcount"));
-				dto.setVisitcount(rs.getInt("visitcount"));
-				dto.setPostdate(rs.getDate("postdate"));
-				dto.setPass(rs.getString("pass"));
+//				dto.setDowncount(rs.getInt("downcount"));
+//				dto.setVisitcount(rs.getInt("visitcount"));
+//				dto.setPostdate(rs.getDate("postdate"));
+				dto.setBoardDate(rs.getDate("BoardDate"));
 				bl.add(dto);
 			}
 
@@ -65,13 +65,14 @@ public class BoardDAO extends JDBConnPool {
 		}
 		return bl;
 	}
-	
+
 	public List<BoardDTO> selectListPage(Map<String, Object> map) {
 		List<BoardDTO> b = new Vector<BoardDTO>();
 		String query = " " + "SELECT * FROM ( " + "   SELECT Tb.*, ROWNUM rNum FROM( " + " SELECT * FROM Board ";
 		if (map.get("searchWord") != null) {
 			query += " WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' ";
-			query += "  ORDER BY id DESC " + "      )Tb " + " ) " + " WHERE rNum BETWEEN ? AND ? AND  noticeFlag = " + map.get("noticeFlag");
+			query += "  ORDER BY id DESC " + "      )Tb " + " ) " + " WHERE rNum BETWEEN ? AND ? AND  noticeFlag = "
+					+ map.get("noticeFlag");
 		}
 		try {
 			psmt = con.prepareStatement(query);
@@ -99,7 +100,6 @@ public class BoardDAO extends JDBConnPool {
 		}
 		return b;
 	}
-
 
 	// 글 추가
 	public int insertWrite(BoardDTO dto) {
@@ -159,74 +159,73 @@ public class BoardDAO extends JDBConnPool {
 		}
 		return dto;
 	}
+
 	// fileboard table 검색 조건까지 고려하여 결과 전체 개수 세기
-		public int countAll(Map<String, Object> map) {
-			int totalCount = 0;
-			String sql = "SELECT COUNT(*) FROM FILEBOARD";
-			if (map.get("searchStr") != null) {
-				sql += " where " + map.get("searchType") + " like '%" + map.get("searchStr") + "%'";
-			}
-
-			try {
-				stmt = con.createStatement();
-				rs = stmt.executeQuery(sql);
-				rs.next();
-				totalCount = rs.getInt(1);
-
-			} catch (Exception e) {
-				System.out.println("게시물 카운트 중 에러");
-				e.printStackTrace();
-			}
-			return totalCount;
+	public int countAll(Map<String, Object> map) {
+		int totalCount = 0;
+		String sql = "SELECT COUNT(*) FROM FILEBOARD";
+		if (map.get("searchStr") != null) {
+			sql += " where " + map.get("searchType") + " like '%" + map.get("searchStr") + "%'";
 		}
-		
-		public int updatePost(BoardDTO dto) {
-			int result = 0;
-			try {
-				String sql = "update fileboard set title=?, name=?, content=?, ofile=?, nfile=? where idx=? and pass=?";
-				psmt = con.prepareStatement(sql);
-				psmt.setString(1, dto.getTitle());
-				psmt.setString(2, dto.getWriter_id());
-				psmt.setString(3, dto.getContent());
-				psmt.setString(4, dto.getOfile());			
-				psmt.setString(5, dto.getNfile());			
-				psmt.setInt(6, dto.getNo_Num());					
-				result = psmt.executeUpdate();
-			} catch (Exception e) {
-				System.out.println("게시물 수정 중 에러");
-				e.printStackTrace();
-			}
-			return result;
-		}
-		
 
-		public void updateDowncount(String idx) {
-			String sql = "update fileboard set downcount=downcount+1 where idx=?";
-			try {
-				psmt = con.prepareStatement(sql);
-				psmt.setString(1, idx);
-				psmt.executeQuery();
-			} catch (Exception e) {
-				System.out.println("다운로드수 증가 에러");
-				e.printStackTrace();
-			}
-		}
-		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			rs.next();
+			totalCount = rs.getInt(1);
 
-		public int getDowncount(String idx) {
-			int dcount = 0;
-			String sql = "select downcount from fileboard where idx=?";
-			try {
-				psmt = con.prepareStatement(sql);
-				psmt.setString(1, idx);
-				rs = psmt.executeQuery();
-				rs.next();
-				dcount = rs.getInt(1);
-
-			} catch (Exception e) {
-				System.out.println("다운로드 수 읽기 중 에러");
-				e.printStackTrace();
-			}
-			return dcount;
+		} catch (Exception e) {
+			System.out.println("게시물 카운트 중 에러");
+			e.printStackTrace();
 		}
+		return totalCount;
+	}
+
+	public int updatePost(BoardDTO dto) {
+		int result = 0;
+		try {
+			String sql = "update fileboard set title=?, name=?, content=?, ofile=?, nfile=? where idx=? and pass=?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getWriter_id());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getNfile());
+			psmt.setInt(6, dto.getNo_Num());
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("게시물 수정 중 에러");
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public void updateDowncount(String idx) {
+		String sql = "update fileboard set downcount=downcount+1 where idx=?";
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, idx);
+			psmt.executeQuery();
+		} catch (Exception e) {
+			System.out.println("다운로드수 증가 에러");
+			e.printStackTrace();
+		}
+	}
+
+	public int getDowncount(String idx) {
+		int dcount = 0;
+		String sql = "select downcount from fileboard where idx=?";
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, idx);
+			rs = psmt.executeQuery();
+			rs.next();
+			dcount = rs.getInt(1);
+
+		} catch (Exception e) {
+			System.out.println("다운로드 수 읽기 중 에러");
+			e.printStackTrace();
+		}
+		return dcount;
+	}
 }

@@ -55,7 +55,7 @@
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">홈</div>
 						<a class="nav-link" href="index.html">
-							<div class="sb-nav-link-icon">
+							<div class="sb-nav-link-icon" href="index.jsp">
 								<i class="fas fa-tachometer-alt"></i>
 							</div>메인페이지
 						</a>
@@ -103,8 +103,8 @@
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="Board/Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="Board/List.jsp">게시물 목록</a> <a
-											class="nav-link" href="Board/Write.jsp">게시물 작성</a>
+											class="nav-link" href="board/List.do">게시물 목록</a> <a
+											class="nav-link" href="board/write.do">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"

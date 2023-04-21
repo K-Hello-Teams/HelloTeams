@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.BoardDAO;
 import DTO.BoardDTO;
 
+
 @WebServlet("/board/view.do")
 public class ViewController extends HttpServlet{
 	@Override

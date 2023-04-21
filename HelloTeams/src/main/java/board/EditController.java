@@ -25,9 +25,9 @@ import utils.FileUtil;
 public class EditController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String idx = req.getParameter("idx");
+		String b_id = req.getParameter("b_id");
 		BoardDAO dao = new BoardDAO();
-		BoardDTO dto = dao.getView(idx);
+		BoardDTO dto = dao.getView(b_id);
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("/14M2Board/Edit.jsp").forward(req, resp);
 	}
@@ -96,7 +96,7 @@ public class EditController extends HttpServlet {
 		// 성공 여부
 		if (result == 1) { // 성공
 			session.removeAttribute("pass");
-			resp.sendRedirect("../board/view.do?idx=" + b_id);
+			resp.sendRedirect("../board/view.do?b_id=" + b_id);
 		} else {
 			AlertFunc.alertLocation(resp, "수정되지 않았습니다", "../board/view.do?b_id=" + b_id);
 		}

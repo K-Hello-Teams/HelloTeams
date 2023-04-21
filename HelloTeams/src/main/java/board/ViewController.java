@@ -18,9 +18,9 @@ public class ViewController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 게시물 읽어오기
 		BoardDAO dao = new BoardDAO();
-		String idx = req.getParameter("idx");
-		dao.updateVisitCount(idx);	// 조회수 증가
-		BoardDTO dto = dao.getView(idx);	// 내용 읽어오기
+		String b_id = req.getParameter("b_id");
+		dao.updateVisitCount(b_id);	// 조회수 증가
+		BoardDTO dto = dao.getView(b_id);	// 내용 읽어오기
 		dao.close();
 		
 		// 줄바꿈

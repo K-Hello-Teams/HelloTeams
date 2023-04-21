@@ -112,8 +112,8 @@ a {
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="List.jsp">게시물 목록</a> <a
-											class="nav-link" href="Write.jsp">게시물 작성</a>
+											class="nav-link" href="list.do">게시물 목록</a> <a
+											class="nav-link" href="write.do">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -202,13 +202,13 @@ a {
 								<tr align="center">
 									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.b_id}</td>
 									<td align="center"><a
-										href="../board/view.do?idx=${list.b_id}">${list.title}</a></td>
+										href="../board/view.do?b_id=${list.b_id}">${list.title}</a></td>
 									<td>${list.writer_id}</td>
 									<td>${list.visit_count}</td>
 									<td>${list.BoardDate}</td>
 									<td><c:if test="${not empty list.ofile}">
 											<a href="../board/download.do?ofile=${list.ofile}
-					&nfile=${list.nfile}&idx=${list.b_id}">[${list.ofile}]</a>
+					&nfile=${list.nfile}&b_id=${list.b_id}">[${list.ofile}]</a>
 										</c:if></td>
 								</tr>
 							</c:forEach>

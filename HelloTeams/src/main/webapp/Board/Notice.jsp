@@ -21,7 +21,7 @@ a {
 </style>
 </head>
 <body class="sb-nav-fixed">
-	<h2>자유 게시판</h2>
+	<h2>공지게시판</h2>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3" href="../index.jsp">Hello Teams</a>
@@ -112,8 +112,8 @@ a {
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="List.jsp">게시물 목록</a> <a
-											class="nav-link" href="Write.jsp">게시물 작성</a>
+											class="nav-link" href="List.jsp">자유 게시판</a> <a
+											class="nav-link" href="board/write.do">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"

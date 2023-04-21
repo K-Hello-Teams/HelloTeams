@@ -16,6 +16,7 @@ import DAO.BoardDAO;
 import DTO.BoardDTO;
 import utils.PagingUtil;
 
+
 @WebServlet("/board/list.do")
 public class ListController extends HttpServlet{
 	@Override
@@ -26,8 +27,8 @@ public class ListController extends HttpServlet{
 		// 변수 저장
 		Map<String, Object> map = new HashMap<>();
 		
-		// 게시판 유형 선택
-		map.put("noticeFlag",req.getParameter("noticeFlag"));
+		// 게시판 유형 선택 (공지 체크)
+//		map.put("noticeFlag",req.getParameter("noticeFlag"));
 		
 		// 검색
 		String searchType = req.getParameter("searchType");
@@ -59,7 +60,7 @@ public class ListController extends HttpServlet{
 		map.put("end", end);
 		
 		// DB에서 게시물 정보 읽기
-		List<BoardDTO> boardList = dao.selectListPage(map);
+		List<BoardDTO> boardList = dao.getListPage(map);
 		dao.close();
 		
 		// 뷰에 값을 전달해 줄 것을 정리하기
@@ -68,7 +69,7 @@ public class ListController extends HttpServlet{
 		map.put("totalCount", totalCount);
 		map.put("pageSize", pageSize);
 		map.put("pageNum", pageNum);
-		
+		System.out.println(boardList.size());
 		// 뷰에 최종 전달
 		req.setAttribute("boardList", boardList);
 		req.setAttribute("map", map);

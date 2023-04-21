@@ -103,7 +103,7 @@
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="Board/Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="board/List.do">게시물 목록</a> <a
+											class="nav-link" href="board/list.do">게시물 목록</a> <a
 											class="nav-link" href="board/write.do">게시물 작성</a>
 									</nav>
 								</div>

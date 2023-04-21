@@ -50,10 +50,16 @@ public class WriteController extends HttpServlet {
 
 		// 폼값을 DTO에 저장
 		BoardDTO dto = new BoardDTO();
-		dto.setWriter_id(mr.getParameter("writer_id"));
+		//dto.setWriter_id(mr.getParameter("writer_id"));
+		dto.setWriter_id("test");
 		dto.setTitle(mr.getParameter("title"));
-		dto.setNoticeFlag(mr.getParameter("noticeFlag"));
+		//dto.setNoticeFlag(mr.getParameter("noticeFlag"));
+		dto.setNoticeFlag("0");
 		dto.setContent(mr.getParameter("content"));
+		System.out.println(dto.getWriter_id());
+		System.out.println(dto.getTitle());
+		System.out.println(dto.getNoticeFlag());
+		System.out.println(dto.getContent());
 
 		// 원본 파일명과 수정된 파일명
 		String filename = mr.getFilesystemName("ofile");

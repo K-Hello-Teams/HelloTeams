@@ -37,6 +37,7 @@ public class BoardDAO extends JDBConnPool {
 //				dto.setVisitcount(rs.getInt("visitcount"));
 //				dto.setPostdate(rs.getDate("postdate"));
 
+				System.out.println(rs.getDate("BoardDate"));
 				bl.add(dto);
 			}
 

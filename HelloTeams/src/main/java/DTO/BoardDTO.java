@@ -4,15 +4,15 @@ import java.sql.Date;
 
 public class BoardDTO {
 
-	int b_id;
-	int visit_count;
-	String writer_id;
-	String title;
-	String content;
-	String Ofile;
-	String Nfile;
-	String noticeFlag;
-	Date BoardDate;
+	private int b_id;
+	private int visit_count;
+	private String writer_id;
+	private String title;
+	private String content;
+	private String Ofile;
+	private String Nfile;
+	private String noticeFlag;
+	private Date BoardDate;
 
 	public String getNoticeFlag() {
 		return noticeFlag;

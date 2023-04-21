@@ -28,7 +28,7 @@ public class ListController extends HttpServlet{
 		Map<String, Object> map = new HashMap<>();
 		
 		// 게시판 유형 선택 (공지 체크)
-//		map.put("noticeFlag",req.getParameter("noticeFlag"));
+		map.put("noticeFlag",req.getParameter("noticeFlag"));
 		
 		// 검색
 		String searchType = req.getParameter("searchType");

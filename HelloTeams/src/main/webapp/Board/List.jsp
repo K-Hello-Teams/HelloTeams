@@ -183,7 +183,7 @@ a {
 				</table>
 				<!-- 목록 -->
 				<table border="1" width="90%">
-					<tr>
+					<tr align="center">
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
@@ -200,12 +200,12 @@ a {
 						<c:otherwise>
 							<c:forEach items="${boardList}" var="list" varStatus="stat">
 								<tr align="center">
-									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.b_id}</td>
+									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.index}</td>
 									<td align="center"><a
 										href="../board/view.do?b_id=${list.b_id}">${list.title}</a></td>
 									<td>${list.writer_id}</td>
-									<td>${list.visit_count}</td>
-									<td>${list.BoardDate}</td>
+<%-- 									<td>${list.visit_count}</td> --%>
+<%-- 									<td>${list.BoardDate}</td> --%>
 									<td><c:if test="${not empty list.ofile}">
 											<a href="../board/download.do?ofile=${list.ofile}
 					&nfile=${list.nfile}&b_id=${list.b_id}">[${list.ofile}]</a>

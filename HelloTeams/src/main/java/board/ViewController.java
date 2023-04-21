@@ -29,6 +29,6 @@ public class ViewController extends HttpServlet{
 		// 게시물 뷰로 전달
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("/Board/View.jsp").forward(req, resp);
-		
+
 	}
 }

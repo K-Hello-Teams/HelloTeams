@@ -20,7 +20,7 @@
   </context-param>
   <context-param>
   	<param-name>OracleId</param-name>
-  	<param-value>jmlee</param-value>
+  	<param-value>yoo</param-value>
   </context-param>
   <context-param>
   	<param-name>OraclePw</param-name>

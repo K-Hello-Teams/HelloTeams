@@ -2,6 +2,7 @@ package DAO;
 
 import java.util.*;
 import common.JDBConnPool;
+import utils.AlertFunction;
 import DTO.MemberDTO;
 
 public class MemberDAO extends JDBConnPool {
@@ -68,6 +69,26 @@ public class MemberDAO extends JDBConnPool {
 		}
 		
 		return dto;
+	}
+	
+	public List<String> CheckSameID() {
+		List<String> list = new ArrayList<>();
+		String sql = "SELECT mem_id FROM mem";
+		
+		try {
+			stmt = con.createStatement();
+			rs=stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				String str = rs.getString("mem_id");
+				list.add(str);
+				System.out.println(str);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 	public MemberDTO FindPass(String name, String id, String email) {

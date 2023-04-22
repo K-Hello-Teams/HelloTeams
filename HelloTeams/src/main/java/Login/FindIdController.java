@@ -17,6 +17,7 @@ import utils.AlertFunction;
 public class FindIdController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = new MemberDAO();
 		HttpSession session = req.getSession();

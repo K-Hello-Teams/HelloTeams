@@ -43,7 +43,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="../Login/CreateMem.jsp">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="../Login/checkID.do">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
                             </div>

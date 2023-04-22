@@ -11,7 +11,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>HelloTeams Login</title>
-        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="http://localhost:8081/HelloTeams/Login/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
@@ -43,7 +43,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="../Login/createMem.do">Need an account? Sign up!</a></div>
+                                        <div class="small"><a href="../Login/CreateMem.jsp">Need an account? Sign up!</a></div>
                                     </div>
                                 </div>
                             </div>

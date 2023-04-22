@@ -1,4 +1,6 @@
 <%@page import="utils.AlertFunction"%>
+<%@page import="DAO.MemberDAO"%>
+<%@page import="DTO.MemberDTO"%>
 <%@ page import="java.io.BufferedReader"%>
 <%@ page import="java.io.FileReader"%>
 <%@ page import="java.util.*"%>
@@ -8,21 +10,18 @@
 <%@ page import="java.util.Properties" %>
 <%@ page import="java.io.IOException" %>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
+	//ë©”ì¼ ë³´ë‚´ê¸° ê°€ëŠ¥
 	String from = "xorbs465@naver.com";
 	String username = "xorbs465@naver.com";
 	String pass = "tjems159357@";
 
-	Random rand = new Random();
-	int randCode = rand.nextInt(900000) + 100000;
-	String authCode = Integer.toString((int)randCode);
-
-	session.removeAttribute("code");
-	session.setAttribute("code", authCode);
-	Properties serverInfo = new Properties();
-
+	String code = request.getParameter("code").toString();
+	System.out.println(code);
+	
+	Properties serverInfo = new Properties();	
 	serverInfo.put("mail.smtp.host", "smtp.naver.com");
 	serverInfo.put("mail.smtp.port", "465");
 	serverInfo.put("mail.smtp.auth", "true");
@@ -35,21 +34,21 @@
 
 	Session mailSession = Session.getInstance(serverInfo, new Authenticator() {
 		protected PasswordAuthentication getPasswordAuthentication() {
-		  	return new PasswordAuthentication(username, pass);
+				 return new PasswordAuthentication(username, pass);
 		}
 	});
 
 	try {
-	  	MimeMessage message = new MimeMessage(mailSession);
-	  	message.setFrom(new InternetAddress(from));
-	  	message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("email")));
-	  	message.setSubject("ÀÌ¸ÞÀÏ ÀÎÁõ ÄÚµå");
-	  	message.setText("ÀÎÁõ ÄÚµå´Â " + authCode + " ÀÔ´Ï´Ù.");
-	  	Transport.send(message);
-  		System.out.println("ÀÌ¸ÞÀÏÀÌ ¼º°øÀûÀ¸·Î Àü¼ÛµÇ¾ú½À´Ï´Ù.");
+		MimeMessage message = new MimeMessage(mailSession);
+		message.setFrom(new InternetAddress(from));
+		message.addRecipient(Message.RecipientType.TO, new InternetAddress(request.getParameter("email")));
+		message.setSubject("ì¸ì¦ ì½”ë“œ");
+		message.setText("ì¸ì¦ì½”ë“œëŠ” " + code + " ìž…ë‹ˆë‹¤..");
+		Transport.send(message);
+		System.out.println("ì´ë©”ì¼ ë³´ë‚´ê¸° ì„±ê³µ.");
 	} catch (MessagingException mex) {
 		mex.printStackTrace();
-		System.out.println("ÀÌ¸ÞÀÏ Àü¼Û¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
+		System.out.println("ë³´ë‚´ê¸° ì‹¤íŒ¨.");
 	}
 %>
 

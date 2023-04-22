@@ -48,7 +48,18 @@ public class AlertFunction {
         }
         catch (Exception e) {}
     }
-
+	
+	public static void alertMsg(HttpServletResponse resp, String msg) {
+        try {
+            resp.setContentType("text/html;charset=UTF-8");
+            PrintWriter writer = resp.getWriter();
+            String script = "<script>"
+                          + "    alert('" + msg + "');"
+                          + "</script>";
+            writer.print(script);
+        }
+        catch (Exception e) {}
+    }
 }
 
 

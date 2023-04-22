@@ -72,7 +72,7 @@ public class MemberDAO extends JDBConnPool {
 	
 	public MemberDTO FindPass(String name, String id, String email) {
 		MemberDTO dto = new MemberDTO();
-		String sql = "select mem_pw from mem where mem_id like ? and mem_name like ? and mem_email like ?";
+		String sql = "select mem_pw from mem where mem_name like ? and mem_id like ? and mem_email like ?";
 		
 		try {
 			psmt = con.prepareStatement(sql);

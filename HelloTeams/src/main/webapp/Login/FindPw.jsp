@@ -9,35 +9,89 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Find Password</title>
-        <link href="../css/styles.css" rel="stylesheet" />
+        <link href="http://localhost:8081/HelloTeams/Login/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			let codenum = Math.floor((Math.random()*900000)+100000);
+			let result = 0;
       		$(function () {
         		$('#sendMailBtn').click(function () {
+        			$('#sendText').css("display", "block");
           			$.ajax({
             			url: "EmailProcess.jsp",
             			type: "post",                 
             			data: {                       
-            				email:$('#email').val()
+            				email:$('#email').val(),
+            				code:codenum            				
             			}
           			});
         		});
       		});
-    </script>
-	<script>
-			function showInput() {
-  			var input = document.getElementById("myInput");
-  			var label = document.getElementById("myLabel");
-  			var sendMailBtn = document.getElementById("sendMailBtn");
-  			var checkMailBtn = document.getElementById("checkMailBtn");
-			
-  			input.style.display = "inline";
-  			label.style.display = "block";
-  			checkMailBtn.style.display="inline";
-  			sendMailBtn.style.display="none";
-			}
-	</script>
+      		
+           	function insertEmail(){
+    		 	let myInput = document.getElementById('myInput').value;	 	
+     	 		if(myInput==codenum) {
+     	 			result = 1;
+     	 		} else if(myInput!=codenum){
+     	 			result = 0;
+     	 		} else{
+     	 			result = -1;
+     	 		}
+     	 		
+     	 		if(result == 1){
+     	 			alert("인증되었습니다.");
+     	 			$("#email").attr("disabled",true); 
+     	 			$("#myInput").attr("disabled",true);
+     	 		} else {
+    				alert("메일이 인증되지 않았습니다.");
+     	 		}
+          	}
+           	
+            function sendid(){
+                let newForm = document.createElement('form');
+                
+                newForm.name = 'newForm';
+                newForm.method = 'post';
+                newForm.action = '../Login/findPw.do';
+                newForm.target ='_blank';
+                
+                let name = document.getElementById('name').value;
+                let id = document.getElementById('ID').value;
+                let email = document.getElementById('email').value;
+                
+                var inName = document.createElement('input');
+                var inId = document.createElement('input');
+                var inEmail = document.createElement('input');
+                var inResult = document.createElement('input');
+                
+                inName.setAttribute("type","hidden");
+                inName.setAttribute("name","searchName");
+                inName.setAttribute("value",name);
+                 
+                inId.setAttribute("type","hidden");
+                inId.setAttribute("name","searchId");
+                inId.setAttribute("value",id);
+                
+                inEmail.setAttribute("type","hidden");
+                inEmail.setAttribute("name","searchEmail");
+                inEmail.setAttribute("value",email);
+                
+                inResult.setAttribute("type","hidden");
+                inResult.setAttribute("name","result");
+                inResult.setAttribute("value",result);
+				              
+                newForm.appendChild(inName);
+                newForm.appendChild(inId);
+                newForm.appendChild(inEmail);
+                newForm.appendChild(inResult);
+
+                document.body.appendChild(newForm);
+
+                newForm.submit();         
+           	}
+    </script>   
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -49,20 +103,30 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Search Password</h3></div>
                                     <div class="card-body">
-                                        <form action="EmailProcess.jsp" method="post">
+                                        <form>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="email" name="email" type="email" placeholder="Input Email" required="required"/>
+                                                <input class="form-control" id="name" name="searchName" type="text" placeholder="Input Name"/>
+                                                <label for="inputName">Name</label>                                             
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="ID" name="searchID" type="text" placeholder="Input ID"/>
+                                                <label for="inputID">ID</label>                                            
+                                            </div>                                                                                    
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="email" name="searchEmail" type="email" placeholder="Input Email"/>
                                                 <label for="inputEmail">Email</label>
-                                                <button class="btn btn-primary" type="button" id="sendMailBtn" onclick="showInput()">인증 메일 보내기</button>                                               
+                                                <button class="btn btn-primary" type="button" id="sendMailBtn">인증 메일 보내기</button>                                               
                                             </div>
                                             <div>
-                                            	<input type="text" id="myInput" style="display:none;" name="checkEmail">
-                                            	<button class="btn btn-primary" id="checkMailBtn" type="button" style="display:none">인증 확인</button>
+                                            	<a class="small" style="display:none" id="sendText">메일을 보냈습니다.</a>
                                             </div>
-                                            <label id="myLabel" style="display:none;">메일을 보냈습니다.</label>
+                                            <div>
+                                            	<input type="text" name="checkCode" id="myInput" >
+                                            	<button class="btn btn-primary" type="button" id="checkCodeBtn" onclick="insertEmail()">인증 확인</button>
+                                            </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="LoginPage.jsp">Return to login</a>
-                                                <button class="btn btn-primary" type="button">Search ID</button>
+                                                <button onclick="sendid()" type ="button"  class="btn btn-primary" id = "search">Search Password</button>
                                             </div>
                                         </form>
                                     </div>
@@ -92,32 +156,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+     
+        
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

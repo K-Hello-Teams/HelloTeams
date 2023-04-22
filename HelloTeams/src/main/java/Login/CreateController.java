@@ -24,11 +24,17 @@ public class CreateController extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		
-		int result = 0;
-		dto.setName(req.getParameter("user_name"));
-		dto.setId(req.getParameter("user_id"));
-		dto.setPw(req.getParameter("user_pw"));
-		dto.setEmail(req.getParameter("user_email"));
+		String name = req.getParameter("regName");
+		String id = req.getParameter("regID");
+		String pw = req.getParameter("regPW");
+		String email = req.getParameter("reqEmail");
+		
+		dto.setName(name);
+		dto.setId(id);
+		dto.setPw(pw);
+		dto.setEmail(email);
+		
+		int result = 0;	
 		result=dao.createMember(dto);
 		dao.close();
 		

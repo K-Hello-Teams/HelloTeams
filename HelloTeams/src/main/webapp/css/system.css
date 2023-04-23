@@ -9,7 +9,9 @@
 	color: #aaa;
 	padding: 10px;
 }
-
+.inline_span{
+	display: inline-block;
+}
 .none{
 	display: none;
 }

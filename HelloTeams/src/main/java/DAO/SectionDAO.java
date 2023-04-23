@@ -10,7 +10,7 @@ public class SectionDAO extends JDBConnPool{
 	//섹션 출력
 	public List<SectionDTO> getSection(int project_Id) {
 		List<SectionDTO> sec_list = new ArrayList();
-		String sql = "select * from section where pro_Id=?";
+		String sql = "select * from section where pro_Id=? order by section_id";
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setInt(1, project_Id);
@@ -79,5 +79,4 @@ public class SectionDAO extends JDBConnPool{
 		}
 		return result;
 	}
-	
 }

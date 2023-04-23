@@ -22,7 +22,7 @@ public class SectionAddController extends HttpServlet{
 		SectionDTO dto = new SectionDTO();
 		int project_id = 0001;//Integer.parseInt(req.getParameter("pro_id"));
 		//project_id= 0001;
-		String content = req.getParameter("work_content");
+		String content = req.getParameter("create_sec_Name");
 		String writer = "test1";
 		System.out.println(project_id);
 		System.out.println(content);
@@ -35,11 +35,8 @@ public class SectionAddController extends HttpServlet{
 		int result = dao.addSection(dto);
 		dao.close();
 		
-		if(result==0) {
+		if(result<0) {
 			System.out.println("실패");
-		}
-		else {
-			AlertFunc.alertclose(resp, "섹션을 등록하셨습니다.");
 		}
 	}
 }

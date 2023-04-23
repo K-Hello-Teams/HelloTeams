@@ -24,12 +24,7 @@ public class todoAddController extends HttpServlet{
 		String rank = req.getParameter("work_rank");
 		String S_date = req.getParameter("work_start");
 		String E_date = req.getParameter("work_end");
-		System.out.println("1"+section_id);
-		System.out.println(content);
-		System.out.println(pic);
-		System.out.println(status);
-		System.out.println(rank);
-		System.out.println(E_date);
+		
 		
 		TodoDTO dto = new TodoDTO();
 		

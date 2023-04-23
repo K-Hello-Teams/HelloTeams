@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import DTO.BoardDTO;
 import common.JDBConnPool;
 
-public class BoardDAO11 extends JDBConnPool {
+public class BoardDAO extends JDBConnPool {
    
-   public int selectCount11(Map<String, Object>map) {
+   public int selectCount(Map<String, Object>map) {
    int totalcount = 0;
    String query="SELECT COUNT(*) FROM Board11";
    if(map.get("searchWord") != null) {
@@ -26,8 +27,8 @@ public class BoardDAO11 extends JDBConnPool {
    }
    return totalcount;
 }
-   public List<BoardDTO11> selectListPage(Map<String, Object>map){
-      List<BoardDTO11> b = new Vector<BoardDTO11>();
+   public List<BoardDTO> selectListPage(Map<String, Object>map){
+      List<BoardDTO> b = new Vector<BoardDTO>();
       String query = " "
             + "SELECT * FROM ( "
             + "   SELECT Tb.*, ROWNUM rNum FROM( "
@@ -45,7 +46,7 @@ public class BoardDAO11 extends JDBConnPool {
             psmt.setString(2, map.get("end").toString());
             rs = psmt.executeQuery();
             while(rs.next()) {
-               BoardDTO11 dto = new BoardDTO11();
+               BoardDTO dto = new BoardDTO();
                
                dto.setSendId(rs.getString(1));
                dto.setWriter(rs.getString(2));

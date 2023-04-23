@@ -2,36 +2,38 @@ package DTO;
 
 import java.sql.Date;
 
-public class BoardDTO11 {
+public class BoardDTO {
 
-   int nonum;
-   int search;
-   String writer;
+   int no_Num;
+   int visit_count;
+   String writer_id;
    String title;
    String content;
    String sendId;
    String Ofile;
    String Nfile; 
    Date BoardDate;
-   public int getNonum() {
-      return nonum;
-   }
-   public void setNonum(int nonum) {
-      this.nonum = nonum;
-   }
-   public int getSearch() {
-      return search;
-   }
-   public void setSearch(int search) {
-      this.search = search;
-   }
-   public String getWriter() {
-      return writer;
-   }
-   public void setWriter(String writer) {
-      this.writer = writer;
-   }
-   public String getTitle() {
+   
+
+    public int getNo_Num() {
+    	return no_Num;
+	}
+	public void setNo_Num(int no_Num) {
+		this.no_Num = no_Num;
+	}
+	public int getVisit_count() {
+		return visit_count;
+	}
+	public void setVisit_count(int visit_count) {
+		this.visit_count = visit_count;
+	}
+	public String getWriter_id() {
+		return writer_id;
+	}
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
+	public String getTitle() {
       return title;
    }
    public void setTitle(String title) {

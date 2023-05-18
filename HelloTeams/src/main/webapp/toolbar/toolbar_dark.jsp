@@ -1,16 +1,21 @@
+
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<html lang="en">
 <head>
 <meta charset="utf-8" />
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>게시판 글쓰기</title>
-<link href="../css/styles.css" rel="stylesheet" />
+<title>Hello Teams</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -23,17 +28,10 @@
 			id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
 		</button>
-		<!-- Navbar Search-->
-		<form
-			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="검색"
-					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-					<i class="fas fa-search"></i>
-				</button>
-			</div>
-		</form>
+		<h2 id="clock" style="color: white;"></h2>
+		<button type="menu"
+			style="background-color: transparent; color: white; border: 0; outline: 0; margin: auto; font: bolder; font-size: x-large;"
+			onclick="#">Project Name</button>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
 			<li class="nav-item dropdown"><a
@@ -56,7 +54,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">홈</div>
-						<a class="nav-link" href="index.jsp">
+						<a class="nav-link" href="index.html">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div>메인페이지
@@ -104,9 +102,9 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="notice.do">공지 게시판</a> <a
-											class="nav-link" href="list.do">자유 게시판</a> <a
-											class="nav-link" href="write.do">게시물 작성</a>
+										<a class="nav-link" href="board/notice.do">공지 게시판</a> <a
+											class="nav-link" href="board/list.do">게시물 목록</a> <a
+											class="nav-link" href="board/write.do">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -145,82 +143,38 @@
 				</div>
 			</nav>
 		</div>
-		<div id="layoutSidenav_content">
-			<main>
-				<div class="container-fluid px-4">
-					<h1 class="mt-4">게시판 글 작성하기</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">게시판 글 작성</li>
-						<li class="breadcrumb-item"><a href="list.do">공지게시판으로
-								돌아가기</a></li>
-						<li class="breadcrumb-item"><a href="list.do">자유게시판으로
-								돌아가기</a></li>
-					</ol>
-					<!-- 					<div class="card mb-4">
-						<div class="card-body">
-							This page is an example of using the light side navigation
-							option. By appending the
-							<code>.sb-sidenav-dark</code>
-							class to the
-							<code>.sb-sidenav</code>
-							class, the side navigation will take on a light color scheme. The
-							<code>.sb-sidenav-dark</code>
-							is also available for a darker option.
-						</div>
-					</div> -->
-				</div>
-			</main>
-			<form action="../board/write.do" method="post" name="writeForm"
-				enctype="multipart/form-data">
-				<table border="1" width="90%">
-					<tr>
-						<td align="center">제목</td>
-						<td><input type="text" name="title" style="width: 90%;" /></td>
-					</tr>
-					<tr>
-						<td align="center">유형</td>
-						<td><input type="checkbox" id="noticeFlag" name="noticeFlag"
-							style="width: 30;" /> <label for="noticeFlag">공지</label></td>
-					</tr>
-					<tr>
-						<td align="center">내용</td>
-						<td><textarea name="content"
-								style="width: 90%; height: 300px;"
-								placeholder="2000자 내외로 입력해주세요."></textarea></td>
-					</tr>
-					<tr>
-						<td align="center">첨부 파일</td>
-						<td><input type="file" name="ofile" /></td>
-					</tr>
-				</table>
-				<div align="center" style='padding-top: 50px;'>
-					<button type="button" class="btn btn-info"
-						onclick="location.href='../board/list.do';">목록 바로가기</button>
-					<button type="reset" class="btn btn-danger">초기화</button>
-					<button type="submit" class="btn btn-dark">작성완료</button>
-
-				</div>
-			</form>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2023</div>
-						<!-- 						<div> -->
-						<!-- 							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms -->
-						<!-- 								&amp; Conditions</a> -->
-						<!-- 						</div> -->
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
-	<script type="text/javascript">
+		<style>
+.tableHeader {
+	background-color: lightgray;
+	text-align: center;
+	"
+}
+</style>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+			crossorigin="anonymous"></script>
+		<script src="js/scripts.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+			crossorigin="anonymous"></script>
+		<script src="assets/demo/chart-area-demo.js"></script>
+		<script src="assets/demo/chart-bar-demo.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+			crossorigin="anonymous"></script>
+		<script src="js/datatables-simple-demo.js"></script>
+		<script src="Board/clock.js"></script>
 		
-	</script>
+		<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
 </body>
 </html>

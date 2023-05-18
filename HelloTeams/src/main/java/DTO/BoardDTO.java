@@ -4,38 +4,58 @@ import java.sql.Date;
 
 public class BoardDTO {
 
-	private int b_id;
-	private int visit_count;
+	private String b_id;
+	private int visitcount;
 	private String writer_id;
 	private String title;
 	private String content;
 	private String Ofile;
 	private String Nfile;
 	private String noticeFlag;
-	private Date BoardDate;
-
-	public String getNoticeFlag() {
-		return noticeFlag;
+	private Date boardDate;
+	private int pnum;
+	
+	
+	public int getPnum() {
+		return pnum;
 	}
 
-	public void setNoticeFlag(String noticeFlag) {
-		this.noticeFlag = noticeFlag;
+	public void setPnum(int pnum) {
+		this.pnum = pnum;
 	}
 
-	public int getB_id() {
+	public Date getBoardDate() {
+		return boardDate;
+	}
+
+	public void setBoardDate(Date boardDate) {
+		this.boardDate = boardDate;
+	}
+
+	private int downcount;
+
+	public int getDowncount() {
+		return downcount;
+	}
+
+	public void setDowncount(int downcount) {
+		this.downcount = downcount;
+	}
+
+	public String getB_id() {
 		return b_id;
 	}
 
-	public void setB_id(int b_id) {
+	public void setB_id(String b_id) {
 		this.b_id = b_id;
 	}
 
-	public int getVisit_count() {
-		return visit_count;
+	public int getVisitcount() {
+		return visitcount;
 	}
 
-	public void setVisit_count(int visit_count) {
-		this.visit_count = visit_count;
+	public void setVisitcount(int visitcount) {
+		this.visitcount = visitcount;
 	}
 
 	public String getWriter_id() {
@@ -62,7 +82,6 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-
 	public String getOfile() {
 		return Ofile;
 	}
@@ -79,12 +98,12 @@ public class BoardDTO {
 		Nfile = nfile;
 	}
 
-	public Date getBoardDate() {
-		return BoardDate;
+	public String getNoticeFlag() {
+		return noticeFlag;
 	}
 
-	public void setBoardDate(Date BoardDate) {
-		this.BoardDate = BoardDate;
+	public void setNoticeFlag(String noticeFlag) {
+		this.noticeFlag = noticeFlag;
 	}
 
 }

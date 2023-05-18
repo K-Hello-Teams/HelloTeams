@@ -19,7 +19,6 @@ import DTO.BoardDTO;
 import utils.AlertFunc;
 import utils.FileUtil;
 
-
 @WebServlet("/board/write.do")
 public class WriteController extends HttpServlet {
 	@Override
@@ -50,11 +49,13 @@ public class WriteController extends HttpServlet {
 
 		// 폼값을 DTO에 저장
 		BoardDTO dto = new BoardDTO();
-		//dto.setWriter_id(mr.getParameter("writer_id"));
 		dto.setWriter_id("test");
 		dto.setTitle(mr.getParameter("title"));
-		//dto.setNoticeFlag(mr.getParameter("noticeFlag"));
-		dto.setNoticeFlag("0");
+		String noticeFlag = "1";
+		if (mr.getParameter("noticeFlag") == null) {
+			noticeFlag = "0";
+		}
+		dto.setNoticeFlag(noticeFlag);
 		dto.setContent(mr.getParameter("content"));
 		System.out.println(dto.getWriter_id());
 		System.out.println(dto.getTitle());
@@ -83,7 +84,12 @@ public class WriteController extends HttpServlet {
 
 		// 성공 여부
 		if (result == 1) { // 성공
-			resp.sendRedirect("../board/list.do");
+			if(noticeFlag.equals("1")) {
+				resp.sendRedirect("../board/notice.do");
+			}else {
+				System.out.println("noticeFlag" + noticeFlag);
+				resp.sendRedirect("../board/list.do");
+			}
 		} else {
 			resp.sendRedirect("../board/write.do");
 		}

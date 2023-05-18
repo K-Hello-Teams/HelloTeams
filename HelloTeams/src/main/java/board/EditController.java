@@ -1,6 +1,5 @@
 package board;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -29,7 +28,7 @@ public class EditController extends HttpServlet {
 		BoardDAO dao = new BoardDAO();
 		BoardDTO dto = dao.getView(b_id);
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("/14M2Board/Edit.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Board/Edit.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -52,19 +51,23 @@ public class EditController extends HttpServlet {
 		}
 
 		// DB 정보 저장
-		Integer b_id = Integer.parseInt(mr.getParameter("b_id"));
+		String b_id = mr.getParameter("b_id");
 		String preOfile = mr.getParameter("preOfile");
 		String preNfile = mr.getParameter("preNfile");
 
 		HttpSession session = req.getSession();
-		String pass = (String) session.getAttribute("pass");
+//		String pass = (String) session.getAttribute("pass");
 
 		// 폼값을 DTO에 저장
 		BoardDTO dto = new BoardDTO();
 		dto.setB_id(b_id);
-		dto.setWriter_id(mr.getParameter("write_id"));
+		dto.setWriter_id(mr.getParameter("writer_id"));
 		dto.setTitle(mr.getParameter("title"));
 		dto.setContent(mr.getParameter("content"));
+		System.out.println(mr.getParameter("writer_id"));
+		System.out.println(mr.getParameter("title"));
+		System.out.println(mr.getParameter("content"));
+		
 
 		// 원본 파일명과 수정된 파일명
 		String filename = mr.getFilesystemName("ofile");
@@ -95,10 +98,13 @@ public class EditController extends HttpServlet {
 
 		// 성공 여부
 		if (result == 1) { // 성공
-			session.removeAttribute("pass");
+			session.removeAttribute(null);
 			resp.sendRedirect("../board/view.do?b_id=" + b_id);
 		} else {
 			AlertFunc.alertLocation(resp, "수정되지 않았습니다", "../board/view.do?b_id=" + b_id);
 		}
+		
+
 	}
+
 }

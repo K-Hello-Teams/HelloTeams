@@ -2,8 +2,12 @@ package utils;
 
 public class PagingUtil {
    public static String pagingBlock (int totalCount,int pageSize,int blockSize,
-            int pageNum, String reqUri) {
+            int pageNum, String reqUri, String addParam) {
       String pagingRes="";
+      if(addParam != null)
+    	  reqUri += "?"+addParam+"&";
+      else
+    	  reqUri += "?";
       
       int totalPage = (int)Math.ceil((double)totalCount/pageSize);
       
@@ -11,31 +15,35 @@ public class PagingUtil {
       
       // [first] [prev block]  3 4 5 6 7 [next block] [last]
       if(pageTemp!=1) {   
-         pagingRes = "<a href='"+reqUri+"?pageNum=1'>[first]</a>";
+         pagingRes = "<a href='"+reqUri+"pageNum=1'>[first]</a>";
          pagingRes += "&nbsp;";
-         pagingRes += "<a href='"+reqUri+"?pageNum="+(pageTemp-1)+"'>[prev block]</a>";
+         pagingRes += "<a href='"+reqUri+"pageNum="+(pageTemp-1)+"'>[prev block]</a>";
       }   
       int blockCount=1;
       while(blockCount<=blockSize && pageTemp<=totalPage) {
          if(pageTemp==pageNum) {
             pagingRes+= "&nbsp;"+pageTemp+"&nbsp;";
          }else {
-            pagingRes+= "&nbsp;<a href='"+reqUri+"?pageNum="+pageTemp+"'>"
+            pagingRes+= "&nbsp;<a href='"+reqUri+"pageNum="+pageTemp+"'>"
                   +pageTemp+"</a>&nbsp;";
          }
          pageTemp++;
          blockCount++;
       }
       if(pageTemp<=totalPage) {
-         pagingRes+="<a href='"+reqUri+"?pageNum="+pageTemp+"'>[next block]</a>";
+         pagingRes+="<a href='"+reqUri+"pageNum="+pageTemp+"'>[next block]</a>";
          pagingRes+="&nbsp;";
-         pagingRes+="<a href='"+reqUri+"?pageNum="+totalPage+"'>[last]</a>";
+         pagingRes+="<a href='"+reqUri+"pageNum="+totalPage+"'>[last]</a>";
       }
       return pagingRes;
    }
 	public static String pagingCenter(int totalCount,int pageSize,int blockSize,
-			int pageNum,String reqUri) {
+			int pageNum,String reqUri, String addParam) {
 		String pagingRes="";
+		if(addParam != null)
+	    	  reqUri += "?"+addParam+"&";
+	      else
+	    	  reqUri += "?";
 		int totalPage = (int)Math.ceil((double)totalCount/pageSize);
 		int div = blockSize/2;
 		int pageTemp = pageNum-div;
@@ -44,21 +52,21 @@ public class PagingUtil {
 			pageTemp=1;
 		}else if(pageTemp>=lastPoint)pageTemp=lastPoint;
 		if(pageTemp!=1) {
-			pagingRes+="<a href='"+reqUri+"?pageNum=1'>[first]</a>";
+			pagingRes+="<a href='"+reqUri+"pageNum=1'>[first]</a>";
 		}
 		int count=1;
 		while(count<=blockSize && pageTemp<=totalPage) {
 			if(pageTemp==pageNum) {
 				pagingRes +="&nbsp;"+pageTemp+"&nbsp;";
 			}else {
-				pagingRes += "&nbsp;<a href='"+reqUri+"?pageNum="+pageTemp
+				pagingRes += "&nbsp;<a href='"+reqUri+"pageNum="+pageTemp
 						+"'>"+pageTemp+"</a>&nbsp;";
 			}
 			pageTemp++;
 			count++;
 		}
 		if(pageTemp<=totalPage) {
-			pagingRes+= "<a href='"+reqUri+"?pageNum="+totalPage
+			pagingRes+= "<a href='"+reqUri+"pageNum="+totalPage
 					+"'>[last]</a>";
 		}
 		return pagingRes;

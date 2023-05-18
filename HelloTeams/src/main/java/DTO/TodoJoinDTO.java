@@ -1,18 +1,16 @@
 package DTO;
 
-import java.sql.Date;
-
-public class TodoDTO {
+public class TodoJoinDTO {
 	private int section_Id;
 	private int todo_Id; // 할일 id
 	private String part_Id; // 담당 ID
 	private String todo_Content; // 작업 용
+	private String part_Name; // 담당 이름
 	private String todo_Start_Date;
 	private String todo_End_Date;
 	private String todo_info;
 	private String todo_Status; //대기중, 진행중, 완료 /완료가 되면 체크 또는 체크하면 완료로 변환
 	private String todo_Rank;
-	
 	public int getSection_Id() {
 		return section_Id;
 	}
@@ -36,6 +34,12 @@ public class TodoDTO {
 	}
 	public void setPart_Id(String part_Id) {
 		this.part_Id = part_Id;
+	}
+	public String getPart_Name() {
+		return part_Name;
+	}
+	public void setPart_Name(String part_Name) {
+		this.part_Name = part_Name;
 	}
 	public String getTodo_Start_Date() {
 		return todo_Start_Date;

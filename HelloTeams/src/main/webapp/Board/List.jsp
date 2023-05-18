@@ -58,7 +58,7 @@ a {
 	</nav>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
-			<nav class="sb-sidenav accordion sb-sidenav-light"
+			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
@@ -111,8 +111,8 @@ a {
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="list.do">게시물 목록</a> <a
+										<a class="nav-link" href="notice.do">공지 게시판</a> <a
+											class="nav-link" href="list.do">자유 게시판</a> <a
 											class="nav-link" href="write.do">게시물 작성</a>
 									</nav>
 								</div>
@@ -187,8 +187,9 @@ a {
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
-						<th>조회수</th>
+						<th>내용</th>
 						<th>작성일</th>
+						<th>조회수</th>
 						<th>첨부파일</th>
 					</tr>
 					<c:choose>
@@ -200,12 +201,13 @@ a {
 						<c:otherwise>
 							<c:forEach items="${boardList}" var="list" varStatus="stat">
 								<tr align="center">
-									<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.index}</td>
+									<td>${list.pnum }</td>
 									<td align="center"><a
 										href="../board/view.do?b_id=${list.b_id}">${list.title}</a></td>
 									<td>${list.writer_id}</td>
-<%-- 									<td>${list.visit_count}</td> --%>
-<%-- 									<td>${list.BoardDate}</td> --%>
+									<td>${list.content}</td>									
+									<td>${list.boardDate}</td>
+									<td>${list.visitcount}</td>
 									<td><c:if test="${not empty list.ofile}">
 											<a href="../board/download.do?ofile=${list.ofile}
 					&nfile=${list.nfile}&b_id=${list.b_id}">[${list.ofile}]</a>
@@ -221,7 +223,7 @@ a {
 				<tr align="center">
 					<td>${map.pagingStr}</td>
 					<td width="100">
-						<button type="button" onclick="location.href='../board/write.do';">
+						<button type="button" class="btn btn-primary" onclick=" location.href='../board/write.do';">
 							글쓰기</button>
 					</td>
 				</tr>

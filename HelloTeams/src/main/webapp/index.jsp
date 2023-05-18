@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,14 +10,16 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Dashboard - SB Admin</title>
+<title>Hello Teams</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
-<link href="css/styles.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/styles.css"
+	rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+<script
+	src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -102,9 +105,9 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="Board/Notice.jsp">공지 게시판</a> <a
-											class="nav-link" href="board/list.do">게시물 목록</a> <a
-											class="nav-link" href="board/write.do">게시물 작성</a>
+										<a class="nav-link" href="HelloTeams/board/notice.do">공지 게시판</a> <a
+											class="nav-link" href="HelloTeams/board/list.do">자유 게시판</a> <a
+											class="nav-link" href="HelloTeams/board/write.do">게시물 작성</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -125,7 +128,7 @@
 								</div>
 							</nav>
 						</div>
-						<div class="sb-sidenav-menu-heading">미정메뉴</div>
+						<div class="sb-sidenav-menu-heading">설정</div>
 						<a class="nav-link" href="charts.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
@@ -157,150 +160,51 @@
 									<i class="fas fa-tasks me-1"></i> 나의 할일
 								</div>
 								<div class="card-body" style="overflow-y: scroll;">
-									<table>
-										<tr style="border-color: whitesmoke; width: 100%;">
-											<th
-												style="background-color: lightgray; text-align: center; width: 50%;"
-												colspan="3">할 일</th>
-											<th
-												style="background-color: lightgray; text-align: center; width: 50%;">마감일</th>
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-										<tr>
-											<td style="width: 50px;"><input type="checkbox" name=""
-												id=""></td>
-											<td style="padding-bottom: 10px; text-align: center;"
-												colspan="2">작업 명 >세부작업 1</td>
-											<!--padding : 10px-->
-											<td style="padding-bottom: 10px; text-align: center;">2023/01/01</td>
-											<!--padding : 10px-->
-										</tr>
-									</table>
+									<c:choose>
+										<c:when test="${sectionList.size()==0}">
+											<li>프로젝트 섹션이 나누어지지 않았습니다.</li>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${sectionList}" var="list" varStatus="stat">
+												<li>
+													<button class="btn_show_hide" type="button"
+														name="${list.section_id}" value="${list.section_id}">${list.section_name}</button>
+
+													<button>
+														<i class="fas fa-ellipsis-h"></i>
+													</button>
+													<button class="btn_keep_sect">보관</button>
+													<button class="btn_del_sect" value="${list.section_id}">삭제</button>
+												</li>
+												<ul style="display: none">
+													<c:forEach items="${todoList}" var="tlist" varStatus="stat">
+														<c:choose>
+															<c:when test="${list.section_id eq tlist.section_Id}">
+																<li><input type="checkbox" class="td_check">
+																	<span class="td_todo_content">${tlist.todo_Content}</span>
+																	<span class="td_todo_part">${tlist.part_Name}</span> <span
+																	class="td_todo_date">${tlist.todo_Start_Date}</span> <span
+																	class="td_todo_date">${tlist.todo_End_Date}</span> <span
+																	class="td_todo_status">${tlist.todo_Status}</span> <span
+																	style="display: none">${tlist.todo_info}</span> <span
+																	style="display: none">${tlist.todo_Id}</span> <span
+																	style="display: none">${tlist.part_Id}</span> <span
+																	style="display: none">${list.section_id}</span> <span
+																	style="display: none">${list.section_name}</span> <span>
+																		<button class="pop_edit_del" type="button">
+																			<i class="fas fa-ellipsis-h"></i>
+																		</button>
+																</span> <span><button class="edit_todo_btn"
+																			value="${tlist.part_Name},${tlist.todo_Content}">수정</button></span>
+																	<span><button class="btn_del_todo"
+																			value="${tlist.todo_Id}">삭제</button></span></li>
+															</c:when>
+														</c:choose>
+													</c:forEach>
+												</ul>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
 
 								</div>
 							</div>
@@ -318,8 +222,9 @@
 											<th class="tableHeader">번호</th>
 											<th class="tableHeader">제목</th>
 											<th class="tableHeader">작성자</th>
-											<th class="tableHeader">조회수</th>
+											<th class="tableHeader">내용</th>
 											<th class="tableHeader">작성일</th>
+											<th class="tableHeader">조회수</th>
 											<th class="tableHeader">첨부파일</th>
 										</tr>
 										<c:choose>
@@ -331,16 +236,16 @@
 											<c:otherwise>
 												<c:forEach items="${boardList}" var="list" varStatus="stat">
 													<tr align="center">
-														<td>${map.totalCount-((map.pageNum-1)*map.pageSize)-stat.b_id}</td>
+														<td>${list.pnum }</td>
 														<td align="center"><a
-															href="../board/view.do?idx=${list.b_id}">${list.title}</a></td>
+															href="../board/view.do?b_id=${list.b_id}">${list.title}</a></td>
 														<td>${list.writer_id}</td>
-														<td>${list.visit_count}</td>
-														<td>${list.BoardDate}</td>
+														<td>${list.content}</td>
+														<td>${list.boardDate}</td>
+														<td>${list.visitcount}</td>
 														<td><c:if test="${not empty list.ofile}">
 																<a
-																	href="../board/download.do?ofile=${list.ofile}
-					&nfile=${list.nfile}&idx=${list.b_id}">[${list.ofile}]</a>
+																	href="../board/download.do?ofile=${list.ofile}&nfile=${list.nfile}&b_id=${list.b_id}">[${list.ofile}]</a>
 															</c:if></td>
 													</tr>
 												</c:forEach>
@@ -354,7 +259,7 @@
 					<div class="card mb-5">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i> 캘린더
-						<div id="calendar"></div>
+							<div id="calendar"></div>
 						</div>
 						<div class="card-body"></div>
 					</div>
@@ -375,11 +280,12 @@
 		</div>
 	</div>
 	<style>
-		.tableHeader{
-			background-color: lightgray; 
-			text-align: center;"
-		}
-	</style>
+.tableHeader {
+	background-color: lightgray;
+	text-align: center;
+	"
+}
+</style>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>

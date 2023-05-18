@@ -32,6 +32,20 @@ public class AlertFunc {
 		}
 	}
 	
+	public static void alertReload(String msg, JspWriter out) {
+		String script = 
+				"<script>"
+				 + "alert('" + msg + "');"
+				 + " history.back();"
+				 + " location.reload();"
+				 + "</script>";
+		try {
+			out.println(script);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void alertLocation(HttpServletResponse resp, String msg, String url) {
 		try {
 			resp.setContentType("text/html;charset=UTF-8");
